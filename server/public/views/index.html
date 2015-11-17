@@ -12,7 +12,12 @@
 <body>
     <h1>Angular Data APIs!</h1>
     <div ng-controller="APIController">
+        <div class = "game well col-md-2" ng-repeat="info in results">
+            <h1>{{info.name}}</h1>
+            <img src = '{{info.image.icon_url}}'></img>
 
+            <p>{{info.deck}}</p>
+        </div>
 
     </div>
 </body>

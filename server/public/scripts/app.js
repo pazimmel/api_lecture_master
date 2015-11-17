@@ -3,7 +3,8 @@ $(document).ready(function() {
 });
 
 function gameSearch() {
-    var apikey = "ca5d63fdb921e2570069eb8267389c4a9260227a";
+    var results, number;
+    var apikey = "80225b21486f42f1c583436085dc460ebe670f7c";
     var baseUrl = "http://www.giantbomb.com/api";
 
     // construct our URL
@@ -19,13 +20,23 @@ function gameSearch() {
         dataType: "jsonp",
         crossDomain: true,
         jsonp: 'json_callback',
-        success: function(data) {
-            console.log(data);
-        }
+        success: searchCallback
+
     });
 
 }
 
 function searchCallback(data) {
-    console.log(data);
+    console.log(data.results);
+    results = data.results;
+    for(var i = 0; i<results.length;i++) {
+        //var image = results[i].image.icon_url;
+        var el = "<div class = 'game well'>" +
+                    "<h1>" + results[i].name + "<h1>" +
+                    //   "<img src = 'image'>"
+                    "<p>" + results[i].deck +"</p>" +
+                "</div>"
+        $('#container').append(el);
+    }
+
 }

@@ -1,7 +1,8 @@
 var myApp = angular.module('myApp', []);
 
 myApp.controller('APIController', ['$scope', '$http', function($scope, $http) {
-    var apikey = "ca5d63fdb921e2570069eb8267389c4a9260227a";
+    $scope.results, $scope.number;
+    var apikey = "80225b21486f42f1c583436085dc460ebe670f7c";
     var baseUrl = "http://www.giantbomb.com/api";
 
     // construct our URL
@@ -12,9 +13,17 @@ myApp.controller('APIController', ['$scope', '$http', function($scope, $http) {
 
     $http.jsonp(finalURL).then(
         function(response) {
-            console.log(response.data);
+            $scope.results = response.data.results;
+            console.log($scope.results);
+            $scope.number = response.data.number_of_page_results;
         }
     );
 
 
 }]);
+
+//stuff I want
+    //results.name
+    //results.deck description of stuff
+    //results.image.icon and then to zoom in results.image.medium
+    //results.number_of_user_reviews
