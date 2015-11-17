@@ -27,15 +27,17 @@ function gameSearch() {
 }
 
 function searchCallback(data) {
-    console.log(data.results);
+    $("#container").empty();
+    //console.log(data.results);
     results = data.results;
-    for(var i = 0; i<results.length;i++) {
-        //var image = results[i].image.icon_url;
-        var el = "<div class = 'game well'>" +
+    for(var i = 0; i<results.length-2;i++) {
+        var image = results[i].image.icon_url;
+        console.log(image);
+        var el = "<div class = 'game well col-md-2'>" +
                     "<h1>" + results[i].name + "<h1>" +
-                    //   "<img src = 'image'>"
+                    "<img src = '"+image+"'>"+
                     "<p>" + results[i].deck +"</p>" +
-                "</div>"
+                "</div>";
         $('#container').append(el);
     }
 
